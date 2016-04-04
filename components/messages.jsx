@@ -2,10 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, ButtonGroup, DropdownButton, Button, Input, Glyphicon, MenuItem } from 'react-bootstrap';
 
-import Message from './message'
+import AutoScroll from './autoscroll'
+import SendMessage from './sendmessage'
 import { sendMessage } from '../actions'
-
-const innerButton = <Button bsSize="small" bsStyle="warning">Send</Button>;
 
 const Messages = ({messages, dispatch}) => (
   <Grid>
@@ -26,19 +25,10 @@ const Messages = ({messages, dispatch}) => (
             </ButtonGroup>
           </div>
           
-          <div scroll-glue="glued" className="panel-body chat-panel-body">
-            <ul className="chat">
-              {messages.map((message, index) => <Message message={message}/>)}
-            </ul>
-          </div>
+          <AutoScroll messages={messages} />
 
           <div className="panel-footer">
-            <Input bsSize="small" type="text" buttonAfter={innerButton} placeholder="Type your message here..." onKeyUp={event => {
-                if(event.keyCode == 13){
-                  dispatch(sendMessage({sender:"henri@ruggedcode.com", text:event.target.value, date:new Date()}))
-                  event.target.value = ''
-                }
-              }}/>
+            <SendMessage dispatch={dispatch} />
           </div>
         </div>
       </Col>
@@ -52,6 +42,3 @@ function mapStateToProps(messages) {
   }
 }
 export default connect(mapStateToProps)(Messages)
-
-
-//export default messages

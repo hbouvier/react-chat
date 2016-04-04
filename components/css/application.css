@@ -3,6 +3,11 @@
     padding-bottom: 20px;
 }
 
+.bodyWithSpacing {
+    padding-top: 75px;
+    padding-bottom: 20px;
+}
+
 /* Make object disabled like (grayed out)*/
 .grayedout {
     opacity : .50;

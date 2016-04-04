@@ -6,17 +6,14 @@ import TimeAgo from 'react-timeago'
 function isBot(sender) { console.log('sender:', sender);return sender === "not_me@ruggedcode.com"; }
 
 
-const AvatarNotFound = ({src}) => (
-  <img src={src} alt="User Avatar" className="img-circle"/>
-)
-const Avatar = ({src}) => (
-  <img src={src} alt="User Avatar" className="img-circle"/>
+const Avatar = ({gravatar, text}) => (
+  <img src={"http://www.gravatar.com/avatar/" + gravatar + "?s=50&d=" + encodeURIComponent("http://placehold.it/50/55C1E7/fff&text=" + text)} alt="User Avatar" className="img-circle"/>
 )
 
 const RightMessage = ({message}) => (
   <li className="right clearfix">
     <span className="chat-img pull-right">
-      <AvatarNotFound src={"http://placehold.it/50/55C1E7/fff&text=" + message.sender.split('@')[0]}/>
+      <Avatar gravatar={message.avatar} text={message.sender.split('@')[0]}/>
     </span>
 
     <div className="chat-body clearfix">
@@ -37,7 +34,7 @@ const RightMessage = ({message}) => (
 const LeftMessage = ({message}) => (
   <li className="left clearfix">
     <span className="chat-img pull-left">
-      <AvatarNotFound src={"http://placehold.it/50/55C1E7/fff&text=" + message.sender.split('@')[0]}/>
+      <Avatar gravatar={message.avatar} text={message.sender.split('@')[0]}/>
     </span>
 
     <div className="chat-body clearfix">
